@@ -1,0 +1,26 @@
+body {
+    background: #325e01;
+}
+
+.stats-container {
+    margin: 0 15px;
+    padding: 80px 15px 15px 15px;
+    box-shadow: 0 0 20px #00000099;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.stats-block h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 20px 5px;
+    color: #7ad117;
+    text-shadow: 1px 1px 2px #0009;
+}
+
+.stats-block p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 15px;
+}

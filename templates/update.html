@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block title %} O.N.G - Estadísticas {% endblock %} {% block other_imports %}
+<link rel="stylesheet" href="{{ url_for('static', filename='login_style.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='info_style.css')}}"> {% endblock %} {% block content %}
+<div class="info-container">
+    <div class="info-block">
+        <h2>{{ barrio }}</h2>
+        {% for dato, info in infra.items() %}
+        <p><span>{{dato}}: </span>{{info}}</p>
+        {% endfor %}
+    </div>
+    <div class="info-block">
+        <form id="Packages" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="login-input">
+                {{ paquetes.paquetes() }} {{ paquetes.paquetes.label() }}
+            </div>
+            <div class="login-button">
+                <div class="inner"></div>
+                <button type="submit" class="form-button">Asignar</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}

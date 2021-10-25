@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block title %} O.N.G - Register {% endblock title %} {% block other_imports %}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='login_style.css')}}"> {% endblock other_imports %} {% block content %}
+<div class="content-container
+ register">
+
+
+    <div class="login-container">
+        <header class="login-header">Register</header>
+        <form id="Sign_In" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="login-input">
+                {{ form.username() }} {{ form.username.label() }}
+            </div>
+            <div class="login-input">
+                {{ form.email() }} {{ form.email.label() }}
+            </div>
+            <div class="login-input">
+                {{ form.passw() }} {{ form.passw.label() }}
+            </div>
+            <div class="login-button">
+                <div class="inner"></div>
+                <button type="submit" class="form-button">Register</button>
+            </div>
+        </form>
+        <div class="login-footer">
+            <span>¿Ya tenés una cuenta? <a href="{{ url_for('login') }}">Iniciá sesion</a>.</span>
+            </d>
+        </div>
+    </div>
+    {% endblock content %}

@@ -1,0 +1,13 @@
+{ % extends 'base.html' % } { % block title % } O.N.G - Home { % endblock title % } {% block home_active %} active { % endblock home_active % } { % block content % }
+<div class="banner">
+    <div class="banner__dim"></div>
+    <div class="banner__text">
+        <h1>O.N.G</h1>
+        <p>Ayuda comunitaria. Servicio administrativo.</p>
+        <div class="banner__text-buttons">
+            <a href="{{ url_for('login') }}"><button class="btn-secondary">Ingresar a cuenta</button></a>
+            <a href="{{ url_for('sign_in') }}"><button class="btn-primary">Registrarse</button></a>
+        </div>
+    </div>
+</div>
+{ % endblock content % }

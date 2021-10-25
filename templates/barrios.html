@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %} O.N.G - Barrios {% endblock %} {% block other_imports %}
+<link rel="stylesheet" href="{{ url_for('static', filename='login_style.css' )}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='barrios_style.css' )}}"> {% endblock %} {% block content %}
+<div class="barrios-container">
+    <div class="search-container">
+        <form id="BarriosForm" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="login-input search-prov">
+                {{ form.provincia() }} {{ form.provincia.label() }}
+            </div>
+            <div class="login-input search-loc">
+                {{ form.localidad() }} {{ form.localidad.label() }}>
+            </div>
+            <div class="login-button search-button">
+                <div class="inner"></div>
+                <button type="submit" class="form-button">Buscar</button>
+            </div>
+        </form>
+    </div>
+    <div class="table-container">
+        <table class="item-table">
+            <thead>
+                <tr>
+                    <th scope="col">Barrio</th>
+                    <th scope="col">Familias</th>
+                    <th scope="col">Paquetes</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lista in barrios %}
+                <form method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                    <tr>
+                        <td>{{ lista[0] }}</td>
+                        <td>{{ lista[1] }}</td>
+                        <td>{{ lista[2] }}</td>
+                        <td>
+                            <a href="{{ url_for('barrio_especifico', barrio=lista[0]) }}"><button type="submit" class="btn-primary"> Mas informacion</button></a>
+                        </td>
+                    </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

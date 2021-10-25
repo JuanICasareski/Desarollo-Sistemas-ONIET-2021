@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block title %} O.N.G - Login {% endblock %} {% block other_imports %}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='login_style.css')}}"> {% endblock %} {% block content %}
+<div class="content-container">
+    <div class="login-container">
+        <header class="login-header">Ingresar</header>
+        <form id="LoginForm" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <div class="login-input">
+                {{ form.username() }} {{ form.username.label() }}
+            </div>
+            <div class="login-input">
+                {{ form.passw() }} {{ form.passw.label() }}
+            </div>
+            <div class="login-button">
+                <div class="inner"></div>
+                <button type="submit" class="form-button">Sign In</button>
+            </div>
+        </form>
+        <div class="login-footer">
+            <span>¿No tenés una cuenta? <a href="{{ url_for('sign_in') }}"> Registrate </a>.</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

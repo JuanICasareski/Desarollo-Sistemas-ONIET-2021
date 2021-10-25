@@ -1,0 +1,117 @@
+body {
+    background: #325e01;
+}
+
+.content-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    position: relative;
+    width: 400px;
+    padding: 50px 40px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.login-header {
+    font-size: 3rem;
+    color: #000;
+    margin-bottom: 40px;
+}
+
+.login-input,
+.login-button {
+    margin: 25px 0;
+    position: relative;
+    height: 50px;
+    width: 100%;
+}
+
+.login-input input {
+    height: 100%;
+    width: 100%;
+    border: 1px solid #c0c0c066;
+    border-radius: 5px;
+    padding-left: 15px;
+    outline: none;
+    color: #000;
+    background-color: #fff;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.login-input label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: grey;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.login-input input:focus {
+    border: 1px solid #f53b57;
+}
+
+.login-input input:focus~label,
+.login-input input:valid~label {
+    transform: translateY(-34px);
+    background-color: #fff;
+    padding: 0 5px;
+    font-size: 1rem;
+}
+
+.login-button {
+    margin-top: 30px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.login-button .inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 5px;
+    background: -webkit-linear-gradient(45deg, #f53b57, #ff536d, #f53b57, #e40d2d);
+}
+
+.login-button button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.login-footer {
+    text-align: center;
+}
+
+.login-footer a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #f53b57;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+    color: #ff536d;
+}
+
+.content-container.register {
+    padding-top: 75px;
+}

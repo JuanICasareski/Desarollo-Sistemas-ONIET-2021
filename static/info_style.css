@@ -1,0 +1,32 @@
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 15px;
+    padding: 80px 15px 15px 15px;
+    box-shadow: 0 0 20px #00000099;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.info-block {
+    position: relative;
+    width: 30%;
+}
+
+.info-block h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 20px 5px;
+    color: #7ad117;
+    text-shadow: 1px 1px 2px #0009;
+}
+
+.info-block p {
+    padding: 15px;
+    font-size: 1.2rem;
+}
+
+.info-block p span {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
