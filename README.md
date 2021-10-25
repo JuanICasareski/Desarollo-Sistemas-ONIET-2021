@@ -32,3 +32,17 @@ wtforms.fields.html5
 
 
 
+
+#### Notas:
+
+http://127.0.0.1:5000/login es la pagina de inicio, no hacer caso a el url '/'
+
+Una vez logueado hay q tocar en el segundo icono de la navbar
+
+Despues escribir la provincia y localidad y se mostrara la lista de barrios
+
+Por la razon q sea el boton a la derecha de cada barrio no funciona, asi q hay que escribire el url a mano (poniendo /Tolosa para tolosa)
+
+Ahí se puede poer el numero de paquetes y darle a agregar, pero el numero de paquetes se actualiza un clic tarde
+
+En el 3er icono  (unas barras verticales) hay q  solucionar el formato.
