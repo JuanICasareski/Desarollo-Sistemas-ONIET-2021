@@ -50,6 +50,7 @@ def barrio():
 def barrio_especifico(barrio):
     '''Ruta que se ingresa mediante el hipervinculo al mostrarse los barrios, muestra las condiciones de conexiones de agua,
     luz y cloacas, además de los paquetes recibidos.'''
+    print('AAAAAAAAAAAAAAAAAAAA',barrio)
     paquetes = ''
     paquete = forms.Packages(request.form)
     infra = getInfrastructuraBarrio(barrio)
@@ -68,7 +69,7 @@ def barrio_especifico(barrio):
 def estadistica():
     '''Ruta con dos menus en la que se listan una estadística con sumatoria de familias y paquetes recibidos, por localidad y por provincia
     y los barrios con menor proporción de paquetes recibidos por familia.'''
-    
+    least_rewarded = []
     menos = forms.LeastRewarded(request.form)
     if request.method == "POST" and menos.validate():
         
@@ -81,10 +82,10 @@ def estadistica():
     provincias = getAllProvincias()
     data = list()
 
-    for provincia, localidad in zip(localidades, provincias):
-        data.append(provincia, localidad, getAllFamilasYPaquetes(provincia, localidad))
+    for provincia, localidad in zip(provincias, localidades):
+        data.append((provincia, localidad, getAllFamilasYPaquetes(provincia, localidad)))
 
-    return render_template('stats.html', provincia = session['provincia'], localidad = ['localidad'], least_rewarded = least_rewarded) 
+    return render_template('stats.html', provincia = session['provincia'], localidad = ['localidad'], least_rewarded = least_rewarded, data=data) 
 
 
 @app.route("/login", methods = ['GET', 'POST'])

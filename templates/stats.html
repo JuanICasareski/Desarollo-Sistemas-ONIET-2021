@@ -1,16 +1,17 @@
-{% extends 'base.html' %} {% block title %} O.N.G - Estadísticas {% endblock title %} {% block other_imports %}
-<link rel="stylesheet" href="{{ url_for('static', filename='stats-style.css') }}"> {% endblock other_imports %} {% block stats_active %} active { % endblock stats_active % } {% block content %}
+{% extends 'base.html' %} {% block title %} O.N.G - Estadísticas {% endblock %} {% block other_imports %}
+<link rel="stylesheet" href="{{ url_for('static', filename='stats_style.css') }}"> {% endblock %} {% block content %}
 <div class="stats-container">
     <div class="stats-block">
         <h2>Sumatoria de Familias</h2>
-        <p>{{ provincia }}</p>
-        <p>{{ localidad }}</p>
+        <p>{{ data[0] }}</p>
+        <p>{{ data[1] }}</p>
     </div>
     <div class="stats-block">
         <h2>Menos recompensados</h2>
         {% for lista in least_rewarded %}
-        <p>{{ lista }}</p>
+        <p>{{ data[2][0] }}</p>
+        <p>{{ data[2][1] }}</p>
         {% endfor %}
     </div>
 </div>
-{% block content %}
+{% endblock %}

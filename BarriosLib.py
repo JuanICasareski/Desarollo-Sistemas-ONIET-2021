@@ -64,7 +64,8 @@ def getAllBarriosFrom(provincia:str, localidad:str):# -> list(list(str)):
 
 
 def getBarriosDeLocalidadProvincia(provincia:str, localidad:str):# -> list(list(str)):
-    cursor.execute(f''' SELECT Familias, Paquetes FROM barrios WHERE Provincia = '{provincia}' AND Localidad = '{localidad}' ''') 
+    cursor.execute(f''' SELECT Familias, Paquetes FROM barrios WHERE Provincia LIKE '{provincia[0]}' AND Localidad LIKE '{localidad[0]}' ''')
+
     return cursor.fetchall()
 
 def getAllFamilasYPaquetes(provincia:str, localidad:str):# -> list(int):
