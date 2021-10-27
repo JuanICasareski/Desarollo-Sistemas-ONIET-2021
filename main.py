@@ -4,7 +4,7 @@ from werkzeug.exceptions import PreconditionRequired
 from werkzeug.user_agent import UserAgent
 from werkzeug.security import generate_password_hash, check_password_hash
 import forms
-from BarriosLib import getAllBarriosFrom, getAllFamilasYPaquetes, getLeastRewardedBarrios, givePaquetes, getInfrastructuraBarrio, getAllLocalidades, getAllProvincias
+from BarriosLib import getAllBarriosFrom, getAllFamilasYPaquetes, getLeastRewardedBarrios, givePaquetes, getInfrastructuraBarrio, getAllLocalidades, getAllProvincias, getAllBarrios
 from NiceLogin import * 
 
 
@@ -31,7 +31,8 @@ def index():
 def barrio():
     '''Ruta en la que se muestran todos los barrios de la provincia y localidad a ingresar. 
     Posee un hipervinculo para ir a la información mas detallada de cada barrio'''
-    local_barrios = []
+    
+    local_barrios = getAllBarrios()
     barrios = forms.BarriosForm(request.form)
 
     if request.method == "POST" and barrios.validate():
@@ -50,7 +51,7 @@ def barrio():
 def barrio_especifico(barrio):
     '''Ruta que se ingresa mediante el hipervinculo al mostrarse los barrios, muestra las condiciones de conexiones de agua,
     luz y cloacas, además de los paquetes recibidos.'''
-    print('AAAAAAAAAAAAAAAAAAAA',barrio)
+
     paquetes = ''
     paquete = forms.Packages(request.form)
     infra = getInfrastructuraBarrio(barrio)
@@ -69,21 +70,32 @@ def barrio_especifico(barrio):
 def estadistica():
     '''Ruta con dos menus en la que se listan una estadística con sumatoria de familias y paquetes recibidos, por localidad y por provincia
     y los barrios con menor proporción de paquetes recibidos por familia.'''
+
     least_rewarded = []
     menos = forms.LeastRewarded(request.form)
-    if request.method == "POST" and menos.validate():
+
+    if True:#request.method == "POST":# and menos.validate():
         
         cantidad = menos.cantidad.data
+        least_rewarded = getLeastRewardedBarrios(3)
+    # TExtBox para mostrar n cantidad de los peores barrios hechoi, solo falta motrarlo, por ahora está hardcodeado en 3    
 
-        least_rewarded = getLeastRewardedBarrios(cantidad)
-
-    localidades = getAllLocalidades()
-
-    provincias = getAllProvincias()
     data = list()
+    provincias = getAllProvincias()
 
-    for provincia, localidad in zip(provincias, localidades):
-        data.append((provincia, localidad, getAllFamilasYPaquetes(provincia, localidad)))
+    for provincia in provincias:
+
+        localidades = getAllLocalidades(provincia[0])
+        familias = 0
+        paquetes = 0
+        
+        for localidad in localidades:
+            v1, v2 = getAllFamilasYPaquetes(provincia, localidad)
+            familias += v1
+            paquetes += v2
+
+        data.append((provincia, localidad, familias, paquetes))
+
 
     return render_template('stats.html', provincia = session['provincia'], localidad = ['localidad'], least_rewarded = least_rewarded, data=data) 
 
@@ -103,9 +115,8 @@ def login():
             session['passw'] = user[1]
             session['email'] = user[2]
 
-            print("ENTRE")
-        else:
-            pass
+            return redirect(url_for("barrio"))
+
         
     return render_template('login.html', form = login)
 

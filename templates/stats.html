@@ -2,16 +2,30 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='stats_style.css') }}"> {% endblock %} {% block content %}
 <div class="stats-container">
     <div class="stats-block">
-        <h2>Sumatoria de Familias</h2>
-        <p>{{ data[0] }}</p>
-        <p>{{ data[1] }}</p>
+        <h2>Paquetes y familias segun provincia</h2>
+        {% for provincia, _, familias, paquetes in data %}
+        <p>
+            <span class="stats-title">Provincia:</span>
+            <span class="stats-data">{{ provincia[0] }}</span>
+            <br>
+            <span class="stats-title">Familias:</span>
+            <span class="stats-data">{{ familias }}</span>
+            <br>
+            <span class="stats-title">Paquetes:</span>
+            <span class="stats-data">{{ paquetes }}</span>
+        </p>
+        {% endfor %}
     </div>
+
     <div class="stats-block">
         <h2>Menos recompensados</h2>
-        {% for lista in least_rewarded %}
-        <p>{{ data[2][0] }}</p>
-        <p>{{ data[2][1] }}</p>
-        {% endfor %}
+        {% for nombre, proporcion in least_rewarded %}
+        <p>
+            <span class="stats-title">Nombre:</span>
+            <span class="stats-data">{{ nombre }}</span>
+            <br>
+            <span class="stats-title">Proporción:</span>
+            <span class="stats-data">{{ proporcion }}</span> {% endfor %}
     </div>
 </div>
 {% endblock %}

@@ -64,28 +64,36 @@ def getAllBarriosFrom(provincia:str, localidad:str):# -> list(list(str)):
 
 
 def getBarriosDeLocalidadProvincia(provincia:str, localidad:str):# -> list(list(str)):
-    cursor.execute(f''' SELECT Familias, Paquetes FROM barrios WHERE Provincia LIKE '{provincia[0]}' AND Localidad LIKE '{localidad[0]}' ''')
-
+    cursor.execute(f''' SELECT Familias, Paquetes FROM barrios WHERE Provincia LIKE "{provincia[0]}" AND Localidad LIKE "{localidad[0]}" ''')
+    #print(cursor.fetchall())
     return cursor.fetchall()
 
 def getAllFamilasYPaquetes(provincia:str, localidad:str):# -> list(int):
     '''Devuelve la cantidad de paquetes y familias en una provincia y localidad'''
-    barrios = getBarriosDeLocalidadProvincia(provincia, localidad)
+
     familias = int()
     paquetes = int()
+    barrios = getBarriosDeLocalidadProvincia(provincia, localidad)
+
     for barrio in barrios:
         familias += barrio[0]
         paquetes += barrio[1]
+
     return (familias, paquetes)
 
 
-def getAllLocalidades():
+def getAllLocalidades(provincia:str):
     '''Devuelve todas las localidades'''
-    cursor.execute(f"""SELECT DISTINCT Localidad FROM barrios""")
-    return cursor.fetchall()
+    cursor.execute(f'''SELECT DISTINCT Localidad FROM barrios WHERE Provincia = "{provincia}"''')
+    a = cursor.fetchall()
+    return a
 
 def getAllProvincias():
     '''Devuelve todas las provincias'''
     cursor.execute(f"""SELECT DISTINCT Provincia FROM barrios""")
     return cursor.fetchall()
 
+def getAllBarrios():
+    '''Devuelve todos los barrios'''
+    cursor.execute(f"""SELECT Nombre, Familias, Paquetes FROM barrios""")
+    return cursor.fetchall()
