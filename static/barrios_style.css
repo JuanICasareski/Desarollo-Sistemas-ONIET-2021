@@ -46,7 +46,6 @@ body {
 .item-table {
     border-collapse: collapse;
     margin: 0 10px;
-    min-width: 800px;
 }
 
 .item-table thead tr {
@@ -70,6 +69,7 @@ body {
 .item-table tbody tr a {
     text-decoration: none;
     color: #fff;
+    white-space: nowrap;
 }
 
 .item-table tbody tr:nth-of-type(even) {

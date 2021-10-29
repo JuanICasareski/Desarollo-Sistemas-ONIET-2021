@@ -68,7 +68,7 @@ body {
     width: 100%;
     height: var(--nav-button-size);
     padding: 20px;
-    z-index: 10;
+    z-index: 99;
 }
 
 .header-container a {
