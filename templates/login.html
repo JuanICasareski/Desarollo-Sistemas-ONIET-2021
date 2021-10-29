@@ -1,6 +1,19 @@
-{% extends 'base.html' %} {% block title %} O.N.G - Login {% endblock %} {% block other_imports %}
-<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='login_style.css')}}"> {% endblock %} {% block content %}
+{% extends 'base.html' %}
+
+{% block title %} 
+    O.N.G - Ingresar 
+{% endblock %} 
+
+{% block other_imports %}
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='login_style.css')}}"> 
+{% endblock other_imports %}
+
+{% block home_active %}
+    active
+{% endblock home_active %}
+
+{% block content %}
 <div class="content-container">
     <div class="login-container">
         <header class="login-header">Ingresar</header>
@@ -14,7 +27,7 @@
             </div>
             <div class="login-button">
                 <div class="inner"></div>
-                <button type="submit" class="form-button">Sign In</button>
+                <button type="submit" class="form-button">Ingresar</button>
             </div>
         </form>
         <div class="login-footer">
@@ -22,4 +35,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

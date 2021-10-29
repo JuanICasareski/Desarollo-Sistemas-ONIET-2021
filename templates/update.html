@@ -1,6 +1,19 @@
-{% extends 'base.html' %} {% block title %} O.N.G - Estadísticas {% endblock %} {% block other_imports %}
-<link rel="stylesheet" href="{{ url_for('static', filename='login_style.css')}}">
-<link rel="stylesheet" href="{{ url_for('static', filename='info_style.css')}}"> {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+
+{% block title %} 
+    O.N.G - Barrio {{ barrio }} 
+{% endblock %} 
+
+{% block other_imports %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='info_style.css')}}"> 
+{% endblock other_imports %} 
+
+{% block barrio_active %}
+    active
+{% endblock barrio_active %}
+
+{% block content %}
 <div class="info-container">
     <div class="info-block">
         <h2>{{ barrio }}</h2>
@@ -20,4 +33,4 @@
             </div>
         </form>
     </div>
-    {% endblock %}
+{% endblock content %}

@@ -64,6 +64,12 @@ body {
 .item-table tbody tr {
     border-bottom: 1px solid #555;
     color: #000;
+    height: 60px;
+}
+
+.item-table tbody tr a {
+    text-decoration: none;
+    color: #fff;
 }
 
 .item-table tbody tr:nth-of-type(even) {

@@ -1,6 +1,19 @@
-{% extends 'base.html' %} {% block title %} O.N.G - Barrios {% endblock %} {% block other_imports %}
-<link rel="stylesheet" href="{{ url_for('static', filename='login_style.css' )}}">
-<link rel="stylesheet" href="{{ url_for('static', filename='barrios_style.css' )}}"> {% endblock %} {% block content %}
+{% extends 'base.html' %} 
+
+{% block title %} 
+    O.N.G - Barrios 
+{% endblock title %}
+
+{% block barrio_active %}
+    active
+{% endblock barrio_active %}
+
+{% block other_imports %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css' )}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='barrios_style.css' )}}"> 
+{% endblock other_imports %} 
+
+{% block content %}
 <div class="barrios-container">
     <div class="search-container">
         <form id="BarriosForm" method="POST">
@@ -9,7 +22,7 @@
                 {{ form.provincia() }} {{ form.provincia.label() }}
             </div>
             <div class="login-input search-loc">
-                {{ form.localidad() }} {{ form.localidad.label() }}>
+                {{ form.localidad() }} {{ form.localidad.label() }}
             </div>
             <div class="login-button search-button">
                 <div class="inner"></div>
@@ -36,7 +49,9 @@
                         <td>{{ lista[1] }}</td>
                         <td>{{ lista[2] }}</td>
                         <td>
-                            <a href="{{ url_for('barrio_especifico', barrio=lista[0])}}">EY</a>
+                            <a class="btn-primary" href="{{ url_for('barrio_especifico', barrio=lista[0])}}">
+                                Más información
+                            </a>
                         </td>
                     </tr>
                 </form>
@@ -45,4 +60,4 @@
         </table>
     </div>
 </div>
-{% endblock %}
+{% endblock content %}

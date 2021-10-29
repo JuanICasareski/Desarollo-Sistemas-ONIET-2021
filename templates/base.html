@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{ % block title % } { % endblock % }</title>
+    <title>
+        {% block title %}
+            O.N.G
+        {% endblock title %}
+    </title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css' )}}">
     <script src="https://kit.fontawesome.com/30735d7de8.js" crossorigin="anonymous"></script>
-    {% block other_imports %} {% endblock %}
+    {% block other_imports %}
+    {% endblock other_imports %}
 </head>
-
 <body>
     <header class='header-container'>
         <a href="{{ url_for('index') }}">
@@ -21,19 +24,19 @@
         <div class="navbar">
             <nav class="nav-container">
                 <ul class="nav-list">
-                    <li class="nav-item active">
+                    <li class="nav-item {% block home_active %}{% endblock home_active %}">
                         <a href="{{ url_for('index') }}">
                             <span class="nav-icon"><i class="fas fa-home"></i></span>
                             <span class="nav-text">Inicio</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% block barrio_active %}{% endblock barrio_active %}">
                         <a href="{{ url_for('barrio') }}">
                             <span class="nav-icon"><i class="fas fa-list"></i></span>
                             <span class="nav-text">Barrio</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {% block stats_active %}{% endblock stats_active %}">
                         <a href="{{ url_for('estadistica') }}">
                             <span class="nav-icon"><i class="fas fa-chart-bar"></i></span>
                             <span class="nav-text">Estad.</span>
@@ -44,10 +47,10 @@
             </nav>
             <div class="nav-login-container">
                 <a href="{{ url_for('login') }}">
-                    <div class="nav-login-item">Sign in</div>
+                    <div class="nav-login-item">Entrar</div>
                 </a>
                 <a href="{{ url_for('sign_in') }}">
-                    <div class="nav-login-item">Register</div>
+                    <div class="nav-login-item">Registrarse</div>
                 </a>
             </div>
             <div class="hamburger">
@@ -56,16 +59,22 @@
         </div>
     </header>
 
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
-    <div class="alert alert-{{ category }}">
-        {{ message }}
-        <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    {% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                    <button type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %} 
+        {% endif %} 
+    {% endwith %} 
+    
+    {% block content %}
+    {% endblock content %}
 
     <script src="{{url_for('static', filename='main.js')}}"></script>
 </body>
-
 </html>

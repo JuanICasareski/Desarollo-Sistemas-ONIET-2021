@@ -1,4 +1,14 @@
-{ % extends 'base.html' % } { % block title % } O.N.G - Home { % endblock title % } { % block content % }
+{% extends 'base.html' %}
+
+{% block title %}
+    O.N.G - Inicio
+{% endblock title %}
+
+{% block home_active %}
+    active
+{% endblock home_active %}
+
+{% block content %}
 <div class="banner">
     <div class="banner__dim"></div>
     <div class="banner__text">
@@ -10,4 +20,4 @@
         </div>
     </div>
 </div>
-{ % endblock content % }
+{% endblock content %}
